@@ -2,7 +2,7 @@
 // MAIN
 
 // standard global variables
-var container, scene, camera, renderer, controls, stats;
+var container, scene, camera, renderer, controls;
 var keyboard = new THREEx.KeyboardState();
 var clock = new THREE.Clock();
 var cube;
@@ -10,6 +10,20 @@ var cube;
 // custom global variables
 var player, idle, explosion;
 var animations;
+var ENGINE = function(){
+    this.enities = {};
+    this.components = {};
+    this.systems = {};
+    this.Game = {};
+    this.load = function(){};
+    this.start = function(){};
+    this.stop = function(){};
+    this.update = function(){};
+}
+
+ENGINE.Game = function() {
+    this.players;
+}
 
 init();
 animate();
@@ -41,12 +55,6 @@ function init()
     THREEx.FullScreen.bindKey({ charCode : 'm'.charCodeAt(0) });
     // CONTROLS
     controls = new THREE.OrbitControls( camera, renderer.domElement );
-    // STATS
-    stats = new Stats();
-    stats.domElement.style.position = 'absolute';
-    stats.domElement.style.bottom = '0px';
-    stats.domElement.style.zIndex = 100;
-    container.appendChild( stats.domElement );
     // LIGHT
     var light = new THREE.PointLight(0xffffff);
     light.position.set(5,150,10);
@@ -130,7 +138,6 @@ function update()
     player.update(1000*delta);
     
     controls.update();
-    stats.update();
 }
 
 function render() 
