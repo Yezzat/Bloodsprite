@@ -26,7 +26,7 @@
 //
 
 /** @namespace */
-var THREEx	= THREEx 		|| {};
+var THREEx	= THREEx || {};
 
 /**
  * - NOTE: it would be quite easy to push event-driven too
@@ -34,8 +34,7 @@ var THREEx	= THREEx 		|| {};
  *   - in this._onkeyChange, generate a string from the DOM event
  *   - use this as event name
 */
-THREEx.KeyboardState	= function()
-{
+THREEx.KeyboardState	= function() {
 	// to store the current state
 	this.keyCodes	= {};
 	this.modifiers	= {};
@@ -53,8 +52,7 @@ THREEx.KeyboardState	= function()
 /**
  * To stop listening of the keyboard events
 */
-THREEx.KeyboardState.prototype.destroy	= function()
-{
+THREEx.KeyboardState.prototype.destroy	= function() {
 	// unbind keyEvents
 	document.removeEventListener("keydown", this._onKeyDown, false);
 	document.removeEventListener("keyup", this._onKeyUp, false);
@@ -75,8 +73,7 @@ THREEx.KeyboardState.ALIAS	= {
 /**
  * to process the keyboard dom event
 */
-THREEx.KeyboardState.prototype._onKeyChange	= function(event, pressed)
-{
+THREEx.KeyboardState.prototype._onKeyChange	= function(event, pressed) {
 	// log to debug
 	//console.log("onKeyChange", event, pressed, event.keyCode, event.shiftKey, event.ctrlKey, event.altKey, event.metaKey)
 
@@ -97,8 +94,7 @@ THREEx.KeyboardState.prototype._onKeyChange	= function(event, pressed)
  * @param {String} keyDesc the description of the key. format : modifiers+key e.g shift+A
  * @returns {Boolean} true if the key is pressed, false otherwise
 */
-THREEx.KeyboardState.prototype.pressed	= function(keyDesc)
-{
+THREEx.KeyboardState.prototype.pressed	= function(keyDesc) {
 	var keys	= keyDesc.split("+");
 	for(var i = 0; i < keys.length; i++){
 		var key		= keys[i];

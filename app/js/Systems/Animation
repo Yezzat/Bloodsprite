@@ -1,0 +1,7 @@
+ENGINE.systems.animation = function animationSystem() {
+	
+}
+
+ENGINE.systems.animation.update = function updateAnimationSystem(){
+	
+}

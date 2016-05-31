@@ -2,10 +2,10 @@ ENGINE.Entity = function Entity(){
 	// Generate a pseudo random ID
 	this.id = (+new Date()).toString(16) + 
 	(Math.random() * 100000000 | 0).toString(16) +
-	ECS.Entity.prototype._count;
+	ENGINE.Entity.prototype._count;
 
 	// increment counter
-	ECS.Entity.prototype._count++;
+	ENGINE.Entity.prototype._count++;
 
 	// The component data will live in this object
 	this.components = {};
@@ -14,11 +14,11 @@ ENGINE.Entity = function Entity(){
 };
 
  // keep track of entities created
-ECS.Entity.prototype. = {
+ENGINE.Entity.prototype = {
 
-	_count = 0,
+	_count: 0,
 
-	addComponent: function addComponent ( component ){
+	add: function addComponent ( component ){
 		// Add component data to the entity
 		// NOTE: The component must have a name property (which is defined as 
 		// a prototype protoype of a component function)
@@ -26,7 +26,7 @@ ECS.Entity.prototype. = {
 		return this;
 	},
 
-	removeComponent: function removeComponent( component ){
+	remove: function removeComponent( component ){
 		// Remove component data by removing the reference to it.
 		// Allows either a component function or a string of a component name to be
 		// passed in
@@ -40,6 +40,13 @@ ECS.Entity.prototype. = {
 		// Remove component data by removing the reference to it
 		delete this.components[name];
 		return this;
+	},
+
+	has: function hasComponent (componentName){
+
+		var name = componentName;
+
+		return (this.components[name] !== undefined)
 	},
 
 	print:  function print () {
